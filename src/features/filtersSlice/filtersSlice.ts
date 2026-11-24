@@ -1,5 +1,5 @@
-import type { TodoAppAction } from "../../types/TodoAction.type";
-import type { TodoFilter } from "../../types/TodoAppState.type";
+import type { TodoAppAction } from "@/types/TodoAction.type";
+import type { TodoFilter } from "@/types/TodoAppState.type";
 
 type TodoFilterColors = TodoFilter["colors"][number];
 
