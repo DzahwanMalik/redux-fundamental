@@ -1,6 +1,6 @@
-import type { TodoAppAction } from "../types/TodoAction.type";
-import type { Todo } from "../types/TodoAppState.type";
-import { nextTodoId } from "../utils/utils";
+import type { TodoAppAction } from "../../types/TodoAction.type";
+import type { Todo } from "../../types/TodoAppState.type";
+import { nextTodoId } from "./utils/utils";
 
 const initialState: Todo[] = [
   { id: 0, text: "Learn React", completed: true },

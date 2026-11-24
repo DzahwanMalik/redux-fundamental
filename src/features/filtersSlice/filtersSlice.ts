@@ -1,5 +1,5 @@
-import type { TodoAppAction } from "../types/TodoAction.type";
-import type { TodoFilter } from "../types/TodoAppState.type";
+import type { TodoAppAction } from "../../types/TodoAction.type";
+import type { TodoFilter } from "../../types/TodoAppState.type";
 
 type TodoFilterColors = TodoFilter["colors"][number];
 
@@ -8,10 +8,7 @@ const initialState: TodoFilter = {
   colors: [],
 };
 
-export default function filtersReducer(
-  state = initialState,
-  action: TodoAppAction,
-) {
+const filtersReducer = (state = initialState, action: TodoAppAction) => {
   switch (action.type) {
     case "filters/statusFilterChanged": {
       return {
@@ -35,4 +32,6 @@ export default function filtersReducer(
     default:
       return state;
   }
-}
+};
+
+export default filtersReducer;
