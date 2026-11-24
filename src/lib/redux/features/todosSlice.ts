@@ -15,7 +15,7 @@ const todosReducer = (state = initialState, action: TodoAppAction) => {
         ...state,
         {
           id: nextTodoId(state),
-          text: action.payload,
+          text: action.payload as Todo["text"],
           completed: false,
         },
       ];
@@ -23,7 +23,7 @@ const todosReducer = (state = initialState, action: TodoAppAction) => {
 
     case "todos/todoToggled": {
       return state.map((todo) => {
-        if (todo.id !== action.payload) {
+        if (todo.id !== (action.payload as Todo["id"])) {
           return todo;
         }
 
@@ -32,6 +32,36 @@ const todosReducer = (state = initialState, action: TodoAppAction) => {
           completed: !todo.completed,
         };
       });
+    }
+
+    case "todos/colorSelected": {
+      const [todoId, color] = action.payload as [Todo["id"], Todo["color"]];
+
+      return state.map((todo) => {
+        if (todo.id !== todoId) {
+          return todo;
+        }
+
+        return {
+          ...todo,
+          color,
+        };
+      });
+    }
+
+    case "todos/todoDeleted": {
+      return state.filter((todo) => todo.id !== action.payload);
+    }
+
+    case "todos/allCompleted": {
+      return state.map((todo) => ({
+        ...todo,
+        completed: true,
+      }));
+    }
+
+    case "todos/completedCleared": {
+      return state.filter((todo) => !todo.completed);
     }
 
     default:
